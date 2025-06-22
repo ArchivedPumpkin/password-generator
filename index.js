@@ -15,7 +15,7 @@ const characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", 
     "}", "]", ",", "|", ":", ";", "<", ">", ".", "?",
     "/"]
 
-const passwordLength = lengthInput.value // Default length if not specified
+let passwordLength = lengthInput.value
 
 function generateRandomCharacter() {
     const randomIndex = Math.floor(Math.random() * characters.length)
@@ -50,6 +50,7 @@ function generatePassword(length) {
 }
 
 generateBtn.addEventListener("click", function () {
+    passwordLength = lengthInput.value
     passwordField.value = generatePassword(passwordLength)
 })
 
