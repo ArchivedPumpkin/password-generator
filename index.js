@@ -1,4 +1,4 @@
-const lengthInput = document.getElementById("length")
+const lengthInput = document.getElementById("length-value")
 const generateBtn = document.getElementById("generate")
 const passwordField = document.getElementById("password")
 const generatedPassword = document.getElementById("generated-password")
@@ -7,6 +7,7 @@ const passUppercase = document.getElementById("include-uppercase")
 const passLowercase = document.getElementById("include-lowercase")
 const passNumbers = document.getElementById("include-numbers")
 const passSymbols = document.getElementById("include-symbols")
+const passSlider = document.getElementById("slider")
 
 const characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q",
     "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
@@ -14,6 +15,11 @@ const characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", 
     "7", "8", "9", "~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "{", "[",
     "}", "]", ",", "|", ":", ";", "<", ">", ".", "?",
     "/"]
+
+passSlider.addEventListener("input", function () {
+    lengthInput.value = passSlider.value
+    lengthInput.textContent = passSlider.value
+})
 
 let passwordLength = lengthInput.value
 
@@ -59,4 +65,5 @@ copyBtn.addEventListener("click", function () {
     navigator.clipboard.writeText(copiedPassword)
     alert("Password copied to clipboard: " + copiedPassword)
 })
+
 
