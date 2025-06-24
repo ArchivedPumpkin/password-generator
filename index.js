@@ -125,7 +125,7 @@ generateBtn.addEventListener("click", function () {
 });
 
 
-copyBtn.addEventListener("click", function () {
+passwordField.addEventListener("click", function () {
     const copiedPassword = passwordField.value
     navigator.clipboard.writeText(copiedPassword)
     alert("Password copied to clipboard: " + copiedPassword)
