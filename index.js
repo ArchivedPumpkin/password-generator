@@ -9,6 +9,49 @@ const passNumbers = document.getElementById("include-numbers")
 const passSymbols = document.getElementById("include-symbols")
 const passSlider = document.getElementById("slider")
 
+// Animation for the h1 highlight text
+// This will animate the text "secure password" with random symbols before revealing the final text
+const symbols = ["!", "@", "#", "$", "%", "&", "_", "/", "\\"];
+const finalText = "secure password";
+const h1 = document.getElementById("h1_highlight");
+
+let frame = 0;
+let counter = 0;
+let frameInterval = 3; // ~60fps → 3 frames ≈ 50ms
+let buffer = '';
+let maxBufferLength = 5;
+
+function animate() {
+    frame++;
+
+    // Update every 3 frames (~50ms)
+    if (frame % frameInterval === 0) {
+        counter++;
+        const visible = finalText.slice(0, counter);
+
+        // When done, stop
+        if (counter > finalText.length) {
+            h1.textContent = finalText;
+            return;
+        }
+
+        // Generate buffer (symbol scrambling)
+        let remaining = finalText.length - counter;
+        if (remaining > maxBufferLength) remaining = maxBufferLength;
+
+        buffer = '';
+        for (let i = 0; i < remaining; i++) {
+            buffer += symbols[Math.floor(Math.random() * symbols.length)];
+        }
+
+        h1.textContent = visible + buffer;
+    }
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+
 const characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q",
     "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
     "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6",

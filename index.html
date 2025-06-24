@@ -10,7 +10,7 @@
 
 <body>
     <main class="container">
-        <h1>Generate a <span class="h1_highlight">random password</span></h1>
+        <h1><span class="h1_first">Generate a </span><span id="h1_highlight"></span></h1>
         <p class="description">Create a secure password with customizable options.</p>
         <div class="settings">
             <label for="length">Password Length: <span id="length-value">12</span></label>
@@ -21,9 +21,10 @@
                 <label><input type="checkbox" id="include-lowercase" checked> Include Lowercase Letters</label>
                 <label><input type="checkbox" id="include-numbers" checked> Include Numbers</label>
                 <label><input type="checkbox" id="include-symbols"> Include Symbols</label>
+                <button id="generate">Generate Password</button>
             </div>
             <div class="password-display">
-                <button id="generate">Generate Password</button>
+
                 <input type="text" id="password" readonly />
                 <button id="copy-button">Copy</button>
             </div>
