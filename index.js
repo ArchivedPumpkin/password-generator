@@ -21,36 +21,50 @@ let frameInterval = 3; // ~60fps → 3 frames ≈ 50ms
 let buffer = '';
 let maxBufferLength = 5;
 
-function animate() {
-    frame++;
+function animateScrambleText(element, text, frameInterval = 3, maxBufferLength = 5) {
+    let frame = 0;
+    let counter = 0;
+    let buffer = '';
 
-    // Update every 3 frames (~50ms)
-    if (frame % frameInterval === 0) {
-        counter++;
-        const visible = finalText.slice(0, counter);
+    function step() {
+        frame++;
 
-        // When done, stop
-        if (counter > finalText.length) {
-            h1.textContent = finalText;
-            return;
+        if (frame % frameInterval === 0) {
+            counter++;
+            const visible = text.slice(0, counter);
+
+            if (counter > text.length) {
+                if ('value' in element) {
+                    element.value = text;
+                } else {
+                    element.textContent = text;
+                }
+                return;
+            }
+
+            let remaining = text.length - counter;
+            if (remaining > maxBufferLength) remaining = maxBufferLength;
+
+            buffer = '';
+            for (let i = 0; i < remaining; i++) {
+                buffer += symbols[Math.floor(Math.random() * symbols.length)];
+            }
+
+            if ('value' in element) {
+                element.value = visible + buffer;
+            } else {
+                element.textContent = visible + buffer;
+            }
         }
 
-        // Generate buffer (symbol scrambling)
-        let remaining = finalText.length - counter;
-        if (remaining > maxBufferLength) remaining = maxBufferLength;
-
-        buffer = '';
-        for (let i = 0; i < remaining; i++) {
-            buffer += symbols[Math.floor(Math.random() * symbols.length)];
-        }
-
-        h1.textContent = visible + buffer;
+        requestAnimationFrame(step);
     }
 
-    requestAnimationFrame(animate);
+    step();
 }
 
-animate();
+
+animateScrambleText(h1, finalText);
 
 
 
@@ -103,9 +117,13 @@ function generatePassword(length) {
 }
 
 generateBtn.addEventListener("click", function () {
-    passwordLength = lengthInput.value
-    passwordField.value = generatePassword(passwordLength)
-})
+    passwordLength = lengthInput.value;
+    const newPassword = generatePassword(passwordLength);
+
+    passwordField.value = ""; // Clear instantly
+    animateScrambleText(passwordField, newPassword);
+});
+
 
 copyBtn.addEventListener("click", function () {
     const copiedPassword = passwordField.value
