@@ -93,4 +93,18 @@ h1 {
 .description {
     text-decoration: underline;
     text-underline-offset: 7px;
+
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 13px;
+        margin: 0 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+
 }
