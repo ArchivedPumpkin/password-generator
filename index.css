@@ -132,5 +132,10 @@ h1 {
         font-size: 2rem;
     }
 
+    .options {
+        max-width: 100%;
+        grid-template-columns: 1fr;
+    }
+
 
 }
