@@ -2,7 +2,7 @@ const lengthInput = document.getElementById("length-value")
 const generateBtn = document.getElementById("generate")
 const passwordField = document.getElementById("password")
 const generatedPassword = document.getElementById("generated-password")
-const copyBtn = document.getElementById("copy-button")
+const copyBtn = document.getElementById("copy-password")
 const passUppercase = document.getElementById("include-uppercase")
 const passLowercase = document.getElementById("include-lowercase")
 const passNumbers = document.getElementById("include-numbers")
@@ -77,10 +77,37 @@ const characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", 
 
 lengthInput.value = 12
 
+function updateLengthValuePosition() {
+    const slider = passSlider;
+    const value = Number(slider.value);
+    const min = Number(slider.min);
+    const max = Number(slider.max);
+
+    // Calculate percentage position
+    const percent = (value - min) / (max - min);
+
+    // Get slider width
+    const sliderWidth = slider.offsetWidth;
+
+    // Thumb size is 20px (from CSS)
+    const thumbSize = 20;
+    const offset = thumbSize / 2;
+
+    // Calculate pixel position
+    const px = percent * (sliderWidth - thumbSize) + offset;
+
+    lengthInput.style.left = `${px - lengthInput.offsetWidth / 2}px`;
+    lengthInput.textContent = value;
+    lengthInput.value = value; // Update the input value
+}
+
 passSlider.addEventListener("input", function () {
-    lengthInput.value = passSlider.value
-    lengthInput.textContent = passSlider.value
-})
+    updateLengthValuePosition();
+});
+
+window.addEventListener("DOMContentLoaded", function () {
+    updateLengthValuePosition();
+});
 
 let passwordLength = lengthInput.value
 
@@ -126,6 +153,12 @@ generateBtn.addEventListener("click", function () {
 
 
 passwordField.addEventListener("click", function () {
+    const copiedPassword = passwordField.value
+    navigator.clipboard.writeText(copiedPassword)
+    alert("Password copied to clipboard: " + copiedPassword)
+})
+
+copyBtn.addEventListener("click", function () {
     const copiedPassword = passwordField.value
     navigator.clipboard.writeText(copiedPassword)
     alert("Password copied to clipboard: " + copiedPassword)
