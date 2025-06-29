@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #111827;
+    background-color: #0c0c0d;
     color: white;
     display: flex;
     flex-direction: column;
@@ -54,7 +54,7 @@ h1 {
 }
 
 #h1_highlight {
-    color: #111827;
+    color: #0c0c0d;
     background-color: white;
     padding: 0 10px;
     align-self: flex-start;
@@ -64,7 +64,6 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background: #273549;
     padding: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -81,7 +80,7 @@ h1 {
 }
 
 .h1_first {
-    color: #111827;
+    color: #0c0c0d;
     background-color: white;
     padding: 0 10px;
     align-self: flex-start;
@@ -116,6 +115,88 @@ h1 {
         transform: translateY(0);
     }
 }
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: gray;
+    /* unfilled track */
+    border-radius: 4px;
+    outline: none;
+}
+
+/* Chrome, Safari, Edge */
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 8px;
+    background: gray;
+    border-radius: 4px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    border: 2px solid white;
+    /* set border to white */
+    margin-top: -6px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Firefox */
+input[type="range"]::-moz-range-track {
+    height: 8px;
+    background: gray;
+    border-radius: 4px;
+}
+
+input[type="range"]::-moz-range-progress {
+    background: white;
+    height: 8px;
+    border-radius: 4px;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: 2px solid white;
+    /* white border */
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* IE and Edge (legacy) */
+input[type="range"]::-ms-track {
+    height: 8px;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+input[type="range"]::-ms-fill-lower {
+    background: white;
+    border-radius: 4px;
+}
+
+input[type="range"]::-ms-fill-upper {
+    background: gray;
+    border-radius: 4px;
+}
+
+input[type="range"]::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: 2px solid white;
+    /* white border */
+    border-radius: 50%;
+}
+
 
 @media screen and (max-width: 600px) {
     body {
