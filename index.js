@@ -165,3 +165,14 @@ copyBtn.addEventListener("click", function () {
 })
 
 
+document.querySelectorAll('input[type="range"]').forEach(slider => {
+    function updateSliderBackground() {
+        const value = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+        slider.style.background = `linear-gradient(to right, white 0%, white ${value}%, gray ${value}%, gray 100%)`;
+    }
+
+    slider.addEventListener('input', updateSliderBackground);
+    updateSliderBackground(); // initialize
+});
+
+

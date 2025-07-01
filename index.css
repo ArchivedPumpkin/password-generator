@@ -166,19 +166,20 @@ h1 {
 }
 
 input[type="range"] {
-    --webkit-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
     width: 100%;
     height: 8px;
-    background: gray;
-    /* unfilled track */
+    background: linear-gradient(to right, white 0%, gray 0%);
     border-radius: 4px;
     outline: none;
 }
 
-/* Chrome, Safari, Edge */
+/* Update the gradient dynamically */
 input[type="range"]::-webkit-slider-runnable-track {
     height: 8px;
-    background: gray;
+    background: transparent;
+    /* handled via JS */
     border-radius: 4px;
 }
 
@@ -190,7 +191,6 @@ input[type="range"]::-webkit-slider-thumb {
     background: white;
     border-radius: 50%;
     border: 2px solid white;
-    /* set border to white */
     margin-top: -6px;
     position: relative;
     z-index: 1;
