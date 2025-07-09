@@ -29,9 +29,9 @@ A simple and customizable password generator that creates secure random password
 
 ## 🌐 Technologies
 
-- **JavaScript** (43.4%)
-- **CSS** (42%)
-- **HTML** (14.6%)
+- **JavaScript**
+- **CSS**
+- **HTML**
 
 ---
 
